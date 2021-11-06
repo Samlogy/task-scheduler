@@ -12,9 +12,18 @@ const Register = () => {
       resolver: yupResolver(registerSchema) 
     });
 
-    const onRegister = data => {
-      console.log(data);
+    const generateUsername = (email) => {
+      return email.substring(0, email.indexOf('@'))
     };
+
+    const onRegister = data => {
+      const new_data = {
+        ...data,
+        username: generateUsername(data.email)
+      };
+      console.log(new_data);
+    };
+    
   
     return (
       <View style={globalStyles.container}>
@@ -33,9 +42,10 @@ const Register = () => {
             <Input onChange={onChange} value={value} placeholder="Password" error={errors.password?.message} secureTextEntry />
           )}
         />
-        <CustomButton text="Register" onPress={handleSubmit(onRegister)} />
+        <CustomButton text="Register" variant="filled" onPress={handleSubmit(onRegister)} />
 
         {/* <Text style={globalStyles.link}> Login </Text> */}
+        <Text style={globalStyles.link} > Login </Text>
       </View>
     );
   };

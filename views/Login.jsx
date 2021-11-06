@@ -30,7 +30,7 @@ const Login = () => {
           )}
         />
   
-        <CustomButton text="Login" onPress={handleSubmit(onLogin)} />
+        <CustomButton text="Login" variant="filled" onPress={handleSubmit(onLogin)} />
       </View>
     );
   };

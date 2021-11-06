@@ -24,7 +24,7 @@ const ForgotPassword = () => {
             <Input onChange={onChange} value={value} placeholder="Email" error={errors.email?.message} />
           )}
         />
-        <CustomButton text="Submit" onPress={handleSubmit(onForgot)} />
+        <CustomButton text="Submit" variant="filled" onPress={handleSubmit(onForgot)} />
       </View>
     );
   };

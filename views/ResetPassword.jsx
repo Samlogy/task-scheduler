@@ -30,7 +30,7 @@ const ResetPassword = () => {
             <Input onChange={onChange} value={value} placeholder="New Password" error={errors.new_password?.message} />
           )}
         />
-        <CustomButton text="Submit" onPress={handleSubmit(onReset)} />
+        <CustomButton text="Submit" variant="filled" onPress={handleSubmit(onReset)} />
       </View>
     );
   };
