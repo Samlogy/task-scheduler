@@ -24,12 +24,6 @@ const Navigation = () => {
                 tabBarIcon: ({ focused, color, size }) => {
                     let rn = route.name;
 
-                    // if (rn === loginName) {
-                    //     return focused ? 
-                    //         <Entypo name="home" size={size} color={color} /> : 
-                    //             <Entypo name="home" size={size} color={color} />
-                    // }
-
                     if (rn === homeName) {
                         return focused ? 
                             <Entypo name="home" size={size} color={color} /> : 
@@ -59,7 +53,6 @@ const Navigation = () => {
                 <Tab.Screen name={addTaskName} component={TaskForm} />
                 <Tab.Screen name={settingsName} component={Settings} />
                 {/* <Tab.Screen name={aboutName} component={About} /> */}
-
             </Tab.Navigator>
         </NavigationContainer>
     )

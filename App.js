@@ -1,24 +1,19 @@
 import React from 'react';
+import { Text, View, StyleSheet, TextInput, Button, Alert, TouchableOpacity } from "react-native";
+import { useFonts } from "expo-font";
 
-import { Home, AuthForm, About, TaskForm, Settings } from "./views";
-import Navigation from "./navigation";
+import { ResetPassword, Home, Notifications, Settings, About, EditProfil } from "./views";
+import SettingsStack from "./navigation/SettingsStack";
+import AuthStack from "./navigation/AuthStack";
+
+
 
 export default function App() {
   return (
-      // <Navigation />
-      <Home />
+    <AuthStack />
   );
-}
+};
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     width: "100%"
-//   },
-// });
 
       {/* <FilterContainer filterList={["data", "science", "web", "front", "back"]} /> */}
       {/* <AuthForm /> */}
