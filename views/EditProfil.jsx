@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Input, CustomButton } from '../components';
 import { editProfileSchema } from "../validation";
+import { globalStyles } from "../styles";
 
 const EditProfil = () => {
   const { control, handleSubmit, formState: { errors } } = useForm({
@@ -16,7 +17,7 @@ const EditProfil = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
       {/* avatar image is required   */}
       
       <Controller control={control} name="fullName" defaultValue=""
@@ -43,7 +44,3 @@ const EditProfil = () => {
 };
 
 export default EditProfil;
-
-const styles = StyleSheet.create({
-
-});

@@ -6,6 +6,7 @@ export const globalStyles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 20,
         padding: 8,
+        backgroundColor: "#fff"
     },
     link: {
         color: "coral",

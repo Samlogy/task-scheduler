@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { SafeAreaView, StyleSheet, ScrollView, TextInput, Button, Text, View } from "react-native";
 
-import { Task } from "../components";
+import { Task, FilterContainer } from "../components";
 
 const data = [
   {
@@ -44,9 +44,10 @@ const data = [
     username: "sam",
     createdAt: "20-10-2021"
   },
-]
+];
+const filterList = ["data", "science", "web", "front", "back", "data", "science", "web", "front", "back", "data", "science", "web", "front", "back"];
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [tasks, setTasks] = useState(data || []);
 
     const onLoad = () => {
@@ -59,8 +60,10 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        { tasks.map(task => <Task data={task} />) }
+      <FilterContainer filterList={filterList} />
+
+      <ScrollView style={styles.tasks} >
+        { tasks.map((task) => <Task data={task} onPress={() => navigation.navigate('TaskDetails', data[1])} />) }
       </ScrollView>
     </SafeAreaView>
   );
@@ -69,15 +72,20 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // paddingHorizontal: 20,
   },
   header: {
     fontSize: 30,
     fontWeight: "600",
+    fontFamily: 'nunito-bold',
     padding: 16
   },
   text: {
     fontSize: 16,
     padding: 16
+  },
+  tasks: {
+    marginVertical: 20
   }
 });
 

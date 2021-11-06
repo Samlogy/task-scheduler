@@ -8,10 +8,22 @@ import { Settings, About, Notifications, EditProfil, ResetPassword } from '../vi
 
 const Stack = createNativeStackNavigator();
 
+const screenOptions = {
+  headerStyle: {
+    backgroundColor: '#f4511e',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    justifyContent: "center",
+    alignItems: "center"
+  },
+};
+
 const SettingsStack = () => {
     return(
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
             <Stack.Screen name="About" component={About} options={{ title: 'About' }} />
             <Stack.Screen name="Notifications" component={Notifications} options={{ title: 'Notifications' }} />

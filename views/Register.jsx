@@ -44,8 +44,7 @@ const Register = () => {
         />
         <CustomButton text="Register" variant="filled" onPress={handleSubmit(onRegister)} />
 
-        {/* <Text style={globalStyles.link}> Login </Text> */}
-        <Text style={globalStyles.link} > Login </Text>
+        <CustomButton text="Login" variant="outline" onPress={() => navigation.navigate('Login')} />
       </View>
     );
   };

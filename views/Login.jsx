@@ -7,7 +7,7 @@ import { Input, CustomButton } from '../components';
 import { loginSchema } from "../validation";
 import { globalStyles } from "../styles";
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const { control, handleSubmit, formState: { errors } } = useForm({
       resolver: yupResolver(loginSchema) 
     });
@@ -31,6 +31,8 @@ const Login = () => {
         />
   
         <CustomButton text="Login" variant="filled" onPress={handleSubmit(onLogin)} />
+        <CustomButton text="Forgot Password" variant="ghost" onPress={() => navigation.navigate('ForgotPassword')} />
+        <CustomButton text="Create an Account" variant="outline" onPress={() => navigation.navigate('Register')} />
       </View>
     );
   };

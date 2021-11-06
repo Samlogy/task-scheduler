@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { SafeAreaView, StyleSheet, TextInput, Button, Text, View } from "react-native";
+import React from "react";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
 
 const About = () => {
 
@@ -15,6 +15,9 @@ const About = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
+    paddingHorizontal: 20,
+    paddingTop: 30
   },
   header: {
     fontSize: 30,

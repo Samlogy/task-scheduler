@@ -5,6 +5,9 @@ import { useFonts } from "expo-font";
 import { ResetPassword, Home, Notifications, Settings, About, EditProfil } from "./views";
 import SettingsStack from "./navigation/SettingsStack";
 import AuthStack from "./navigation/AuthStack";
+import HomeStack from "./navigation/HomeStack";
+
+// import Navigation from "./navigation"
 
 
 
