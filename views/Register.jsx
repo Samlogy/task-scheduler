@@ -43,8 +43,6 @@ const Register = () => {
           )}
         />
         <CustomButton text="Register" variant="filled" onPress={handleSubmit(onRegister)} />
-
-        <CustomButton text="Login" variant="outline" onPress={() => navigation.navigate('Login')} />
       </View>
     );
   };
