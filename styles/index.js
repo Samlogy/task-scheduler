@@ -51,5 +51,14 @@ export const globalStyles = StyleSheet.create({
     errorMsg: {
         color: "red",
         marginTop: 4
+    },
+    switchContainer: {
+        flexDirection: "row",
+        justifyContent: "center"
+    },
+        swicthLabel: {
+        width: 150,
+        fontSize: 16,
+        fontWeight: "600"
     }
 });
