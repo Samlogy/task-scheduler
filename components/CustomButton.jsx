@@ -2,10 +2,12 @@ import React from 'react';
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
 
-const CustomButton = ({ text, onPress, variant, ...rest }) => {
+const CustomButton = ({ text, onPress, variant, isLoading, ...rest }) => {
     return(
       <TouchableOpacity activeOpacity={0.8} {...rest} style={variant === "filled" ? styles.buttonFilled : variant === "outline" ? styles.buttonOutline : variant === "ghost" ? styles.buttonGhost : styles.buttonFilled} onPress={onPress}>
-        <Text style={variant === "filled" ? styles.buttonLabel : styles.buttonLabelCustom}> {text} </Text>
+        <Text style={variant === "filled" ? styles.buttonLabel : styles.buttonLabelCustom}> 
+          { isLoading ? "Loading..." : text } 
+        </Text>
       </TouchableOpacity>
     )
 };
