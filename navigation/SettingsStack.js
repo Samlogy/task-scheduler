@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { MaterialIcons } from '@expo/vector-icons';
+import { View } from "react-native";
 
-import { Header } from '../components';
-import { Settings, About, Notifications, EditProfil, ResetPassword } from '../views';
+import { Profil, EditProfil, ResetPassword } from '../views';
 
 
 const Stack = createNativeStackNavigator();
 
-const screenOptions = {
+const options = {
   headerStyle: {
     backgroundColor: '#f4511e',
   },
@@ -20,13 +21,16 @@ const screenOptions = {
   },
 };
 
-const SettingsStack = () => {
+const SettingsStack = ({navigation}) => {
     return(
         <NavigationContainer>
-          <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Settings" component={Settings} options={{ title: 'Settings' }} />
-            <Stack.Screen name="About" component={About} options={{ title: 'About' }} />
-            <Stack.Screen name="Notifications" component={Notifications} options={{ title: 'Notifications' }} />
+          <Stack.Navigator screenOptions={options}>
+            <Stack.Screen name="Settings" component={Profil} options={{ title: 'Settings', headerRight: () => (
+                  <View style={{marginRight: 5}}>
+                    <MaterialIcons name="notifications" size={24} color="#fff" onPress={() => navigation.navigate('Notifications')} />
+                  </View>
+                ), }} 
+            />
             <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ title: 'Reset Password' }} />
             <Stack.Screen name="EditProfil" component={EditProfil} options={{ title: 'Edit Profil' }} />
           </Stack.Navigator>

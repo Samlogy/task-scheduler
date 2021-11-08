@@ -8,7 +8,7 @@ import { COLORS } from "../constants"
 
 
 
-const Profil = () => {
+const Profil = ({ navigation }) => {
     const [data, setData] = useState({ address: "Tizi-Ouzou, Algeria", phone: "213 540498180", email: "senanisammy@gmail.com", username: "Sam", fullName: "Senani Samy", userId: "@j_doe", avatar: require("../assets/aa.png") });
 
     const onLogout = () => {
@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingVertical: 35,
-      paddingHorizontal: 0
+      paddingHorizontal: 0,
+      backgroundColor: "#fff"
     },
     avatar: {
       height: 125, 
