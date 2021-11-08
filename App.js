@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, TouchableOpacity, ScrollView, Dimensions, Image, TouchableHighlight } from "react-native";
-import { useFonts } from "expo-font";
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
 
 import { ResetPassword, Home, Notifications, Settings, About, EditProfil, } from "./views";
 import SettingsStack from "./navigation/SettingsStack";
@@ -10,66 +11,29 @@ import { globalStyles } from './styles';
 import { CustomSwitch, CustomButton } from './components';
 import { COLORS } from "./constants"
 
-// import Navigation from "./navigation"
+import Navigation from "./navigation"
 
-import { Entypo } from '@expo/vector-icons';
-
-
-const {width} = Dimensions.get('screen');
-const cardWidth = width / 2 - 20;
-const filters = [
-  {label: "Data", value: "data"},
-  {label: "Science", value: "science"},
-  {label: "Web", value: "web"},
-  {label: "Front", value: "front"},
-  {label: "Back", value: "back"},
-]; 
+const getFonts = () => Font.loadAsync({
+  'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
+  'nunito-bold': require('./assets/fonts/Nunito-Bold.ttf'),
+});
 
 export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  if (fontsLoaded) {
+    return (
+      <Navigation />
+    )
+  } else {
+    return (
+      <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
+    )
+  }
+
+}
 
 
-  return (
-    <Home />
-  )
-};
-
-const Filter = ({ filters }) => {
-  const [selectedFilter, setSelectedFilter] = React.useState(0);
-
-  const onFilter = (index, value) => {
-    setSelectedFilter(index);
-    console.log('Filter: ', value);
-  };
-  
-  return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}
-      contentContainerStyle={style.filterListContainer}>
-      {filters.map((filter, idx) => (
-        <TouchableOpacity key={idx} activeOpacity={0.8}
-          onPress={() => onFilter(idx, filter.value)}>
-          <View style={{
-              backgroundColor:
-                selectedFilter === idx
-                  ? COLORS.primary
-                  : COLORS.secondary,
-              ...style.listBtn,
-            }}>
-            <Text style={{
-                fontWeight: 'bold',
-                marginHorizontal: 10,
-                color:
-                  selectedFilter === idx
-                    ? COLORS.white
-                    : COLORS.primary,
-              }}>
-              {filter.label}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  );
-};
 
 const style = StyleSheet.create({
   container: {
@@ -140,23 +104,5 @@ const style = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  card: {
-    height: 220,
-    width: cardWidth,
-    marginHorizontal: 10,
-    marginBottom: 20,
-    marginTop: 50,
-    borderRadius: 15,
-    elevation: 13,
-    backgroundColor: COLORS.white,
-  },
-  addToCartBtn: {
-    height: 30,
-    width: 30,
-    borderRadius: 20,
-    backgroundColor: COLORS.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  }
 });
