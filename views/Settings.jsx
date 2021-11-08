@@ -1,103 +1,97 @@
 import React, {useEffect, useState} from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { Entypo } from '@expo/vector-icons';
 
 import { CustomButton } from '../components';
 import { globalStyles } from "../styles";
+import { COLORS } from "../constants"
 
-const PersonalInfo = ({ data }) => {
-    return (
-        <View>
-            <Text style={styles.subHeader}> My Personal Informations </Text>
-            <View style={styles.listItem}>
-                <View style={styles.item}>
-                    <Text style={styles.itemLabel}> Full Name: </Text>
-                    {/* <Text style={styles.itemValue}> {data ? data.fullName : ""} </Text> */}
-                </View>
 
-                <View style={styles.item}>
-                    <Text style={styles.itemLabel}> Username: </Text>
-                    {/* <Text style={styles.itemValue}> {data.username ? data.username : ""} </Text> */}
-                </View>
 
-                <View style={styles.item}>
-                    <Text style={styles.itemLabel}> Email: </Text>
-                    {/* <Text style={styles.itemValue}> {data.email ? data.email : ""} </Text> */}
-                </View>
+const Profil = () => {
+    const [data, setData] = useState({ address: "Tizi-Ouzou, Algeria", phone: "213 540498180", email: "senanisammy@gmail.com", username: "Sam", fullName: "Senani Samy", userId: "@j_doe", avatar: require("../assets/aa.png") });
 
-                <View style={styles.item}>
-                    <Text style={styles.itemLabel}> Joined in: </Text>
-                    {/* <Text style={styles.itemValue}> {data.createdAt ? data.createdAt : ""} </Text> */}
-                </View>
-            </View>
+    const onLogout = () => {
+        console.log("logout")
+    };
+    const onLoad = () => {
+        console.log('on load data')
+    };
+    // useEffect(() => {
+    //     onLoad()
+    // }, []);
+
+    return(
+    <SafeAreaView style={styles.container}>
+      <View style={styles.userInfoSection}> 
+        <View style={{flexDirection: 'row', marginTop: 15}}>
+          <Image source={data.avatar} style={styles.avatar} />
+  
+          <View style={{marginLeft: 20}}>
+            <Text style={styles.title}> {data.fullName} </Text>
+            <Text style={styles.caption}> {data.userId} </Text>
+          </View>
         </View>
-    );
+      </View>
+  
+      <View style={styles.userInfoSection}>
+        <View style={styles.row}>
+          <Entypo name="user" size={24} color="#333" />
+          <Text style={{color:"#777", marginLeft: 20, fontSize: 17}}> {data.username} </Text>
+        </View>
+
+        <View style={styles.row}>
+          <Entypo name="email" size={24} color="#333" />
+          <Text style={{color:"#777", marginLeft: 20, fontSize: 17}}> {data.email} </Text>
+        </View>
+
+        <View style={styles.row}>
+          <Entypo name="phone" size={24} color="#333" />
+          <Text style={{color:"#777", marginLeft: 20, fontSize: 17}}> {data.phone} </Text>
+        </View>
+      </View>
+  
+      <View style={styles.userInfoSection}>
+          <CustomButton text="Edit Profile" variant="filled" onPress={() => navigation.navigate('EditProfil')} />
+          <CustomButton text="Reset Password" variant="filled" onPress={() => navigation.navigate('ResetPassword')} />
+          <CustomButton text="Logout" variant="outline" onPress={() => onLogout()} />
+      </View>
+    </SafeAreaView>
+    )
 };
 
-
-
-const Settings = ({ navigation }) => {
-    const [data, setData] = useState({ fullName: "", username: "", email: "", createdAt: "" });
-
-    const onLoad = () => {
-        console.log('load personal data from api')
-    };
-    const onLogout = () => {
-        console.log('logout')
-    };
-
-    const goAbout = () => {
-        console.log('about')
-        
-    };
-    const goEdit = () => {
-        console.log('edit')
-    };
-    const goReset = () => {
-        console.log('reset')
-    };
-    const goNotifications = () => {
-        console.log('notifications')
-    };
-
-    // useEffect(() => {
-    //     onLoad();
-    // }, []);
-  
-    return(
-        <SafeAreaView style={globalStyles.container}>
-            <PersonalInfo data={data} />
-            <CustomButton text="About" variant="ghost" onPress={() => navigation.navigate('About')} />
-            <CustomButton text="Notifications" variant="filled" onPress={() => navigation.navigate('Notifications')} />
-            <CustomButton text="Reset Password" variant="filled" onPress={() => navigation.navigate('ResetPassword')} />
-            <CustomButton text="Edit Profile" variant="filled" onPress={() => navigation.navigate('EditProfil')} />
-            <CustomButton text="Logout" variant="outline" onPress={() => onLogout()} />
-        </SafeAreaView>
-    )
-}
-
 const styles = StyleSheet.create({
-    subHeader: {
-        fontSize: 20,
-        fontWeight: "500",
-        marginBottom: 10,
-        textAlign: "left"
+    container: {
+      flex: 1,
+      paddingVertical: 35,
+      paddingHorizontal: 0
     },
-    listItem: {
-        flexDirection: "column",
+    avatar: {
+      height: 125, 
+      width: 125, 
+      borderRadius: 75
     },
-    item: {
-        flexDirection: "row",
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: "#333",
+      marginTop:15,
+      marginBottom: 5,
     },
-    itemLabel: {
-        fontSize: 16,
-        fontWeight: "500",
-        fontStyle: "italic"
+    caption: {
+      fontSize: 14,
+      lineHeight: 14,
+      fontWeight: '500',
+      color: "#333"
     },
-    itemValue: {
-        fontSize: 16,
-        fontWeight: "600",
-        marginLeft: ".5rem"
+    userInfoSection: {
+      paddingHorizontal: 30,
+      marginBottom: 25,
     },
+    row: {
+      flexDirection: 'row',
+      marginBottom: 10,
+    }
 });
 
-export default Settings;
+export default Profil;
