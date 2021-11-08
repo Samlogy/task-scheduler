@@ -8,9 +8,9 @@ export { default as ResetPassword} from "./ResetPassword.jsx";
 // export { default as TaskForm} from "./TaskForm.jsx";
 
 export { default as Home} from "./Home.jsx";
-export { default as Settings} from "./Settings.jsx";
+export { default as Profil} from "./Profil.jsx";
 export { default as Notifications} from "./Notifications.jsx";
 export { default as About} from "./About.jsx";
 export { default as EditProfil} from "./EditProfil.jsx";
 
-// export { default as TaskDetails} from "./TaskDetails.jsx";
+export { default as TaskDetails} from "./TaskDetails.jsx";

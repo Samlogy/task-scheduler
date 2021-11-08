@@ -72,7 +72,7 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Filter filters={filters} />
 
-      <ScrollView style={styles.tasks} >
+      <ScrollView style={styles.tasks} showsVerticalScrollIndicator={false}>
         { tasks.map((task) => <Task data={task} onPress={() => navigation.navigate('TaskDetails', data[1])} />) }
       </ScrollView>
     </SafeAreaView>
@@ -82,20 +82,10 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: 20,
-  },
-  header: {
-    fontSize: 30,
-    fontWeight: "600",
-    fontFamily: 'nunito-bold',
-    padding: 16
-  },
-  text: {
-    fontSize: 16,
-    padding: 16
   },
   tasks: {
-    marginVertical: 20
+    marginVertical: 20,
+    paddingHorizontal: 20
   }
 });
 
