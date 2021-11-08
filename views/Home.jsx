@@ -1,7 +1,18 @@
 import React, {useState, useEffect} from "react";
-import { SafeAreaView, StyleSheet, ScrollView, TextInput, Button, Text, View } from "react-native";
+import { StyleSheet, ScrollView, Dimensions, SafeAreaView } from "react-native";
 
-import { Task, FilterContainer } from "../components";
+import { Task, Filter } from "../components";
+
+const {width} = Dimensions.get('screen');
+const cardWidth = width / 2 - 20;
+
+const filters = [
+  {label: "Data", value: "data"},
+  {label: "Science", value: "science"},
+  {label: "Web", value: "web"},
+  {label: "Front", value: "front"},
+  {label: "Back", value: "back"},
+]; 
 
 const data = [
   {
@@ -45,7 +56,6 @@ const data = [
     createdAt: "20-10-2021"
   },
 ];
-const filterList = ["data", "science", "web", "front", "back", "data", "science", "web", "front", "back", "data", "science", "web", "front", "back"];
 
 const Home = ({ navigation }) => {
   const [tasks, setTasks] = useState(data || []);
@@ -54,13 +64,13 @@ const Home = ({ navigation }) => {
         console.log('load personal data from api')
     };
 
-    useEffect(() => {
-        onLoad();
-    }, []);
+    // useEffect(() => {
+    //     onLoad();
+    // }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <FilterContainer filterList={filterList} />
+      <Filter filters={filters} />
 
       <ScrollView style={styles.tasks} >
         { tasks.map((task) => <Task data={task} onPress={() => navigation.navigate('TaskDetails', data[1])} />) }
