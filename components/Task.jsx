@@ -1,14 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-const Task = ({ data }) => {
+const Task = ({ data, onPress }) => {
     return(
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress} key={data.title}>
             <View style={styles.taskContainer}>
                 <Text style={styles.taskItem}> {data.title} </Text>
                 <Text style={styles.taskItem}> {data.priority} </Text>
-                <Text style={styles.taskItem}> {data.completed ? "completed" : "not completed"} </Text>    
-                {/* <Text style={styles.taskItem}> {data.description} </Text> */}
+                <Text style={styles.taskItem}> {data.status} </Text>    
                 <Text style={styles.taskItem}> {data.username} </Text>
                 <Text style={styles.taskItem}> {data.createdAt} </Text>
             </View>
@@ -18,18 +17,17 @@ const Task = ({ data }) => {
 
 const styles = StyleSheet.create({
     taskContainer: {
-        flexDirection: "column",
-        justifyContent: "center",
-        borderWidth: 1,
-        borderStyle: "solid",
-        borderColor: "dodgerblue",
-        borderRadius: 10,
-        backgroundColor: "dodgerblue",
-        color: "#fff",
-        marginTop: 20,
-        marginBottom: 10,
         padding: 10,
-
+        marginTop: 16,
+        borderColor: '#bbb',
+        borderWidth: 2,
+        borderStyle: "solid",
+        borderRadius: 1,
+        borderRadius: 10,
+        flexDirection: "row",
+        flexWrap: "wrap", 
+        justifyContent: "space-around",
+        // elevation: 1
     },
     taskItem: {
         fontWeight: "500",

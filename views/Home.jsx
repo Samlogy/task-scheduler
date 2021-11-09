@@ -3,8 +3,7 @@ import { StyleSheet, ScrollView, Dimensions, SafeAreaView } from "react-native";
 
 import { Task, Filter } from "../components";
 
-const {width} = Dimensions.get('screen');
-const cardWidth = width / 2 - 20;
+
 
 const filters = [
   {label: "Data", value: "data"},
@@ -19,7 +18,7 @@ const data = [
     title: "title",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
-    completed: false,
+    status: "Pendding",
     username: "sam",
     createdAt: "20-10-2021"
   },
@@ -27,7 +26,7 @@ const data = [
     title: "title",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
-    completed: false,
+    status: "Doing",
     username: "sam",
     createdAt: "20-10-2021"
   },
@@ -35,7 +34,7 @@ const data = [
     title: "title",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
-    completed: false,
+    status: "Done",
     username: "sam",
     createdAt: "20-10-2021"
   },
@@ -43,37 +42,30 @@ const data = [
     title: "title",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
-    completed: false,
-    username: "sam",
-    createdAt: "20-10-2021"
-  },
-  {
-    title: "title",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
-    priority: 1,
-    completed: false,
+    status: "Canceled",
     username: "sam",
     createdAt: "20-10-2021"
   },
 ];
 
 const Home = ({ navigation }) => {
-  const [tasks, setTasks] = useState(data || []);
+  const [tasks, setTasks] = useState([]);
 
     const onLoad = () => {
         console.log('load personal data from api')
+        setTasks(data)
     };
 
-    // useEffect(() => {
-    //     onLoad();
-    // }, []);
+    useEffect(() => {
+        onLoad();
+    }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <Filter filters={filters} />
 
       <ScrollView style={styles.tasks} showsVerticalScrollIndicator={false}>
-        { tasks.map((task) => <Task data={task} onPress={() => navigation.navigate('TaskDetails', data[1])} />) }
+        { tasks.map((task) => <Task data={task} onPress={() => navigation.navigate('TaskDetails', task)} />) }
       </ScrollView>
     </SafeAreaView>
   );

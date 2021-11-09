@@ -14,14 +14,16 @@ const options = {
   headerTitleStyle: {
     fontWeight: 'bold',
   },
+  headerTitleAlign: "center",
+  headerBackVisible: true,
 };
 
 const HomeStack = () => {
     return(
         <NavigationContainer>
           <Stack.Navigator screenOptions={options}>
-            <Stack.Screen name="Home" component={Home} options={{ title: 'Home' }} />
-            <Stack.Screen name="TaskDetails" component={TaskDetails} options={{ title: 'Task Details' }} />
+            <Stack.Screen name="Home" component={Home} options={{...options, title: 'Home' }} />
+            <Stack.Screen name="TaskDetails" component={TaskDetails} options={{...options, title: 'Task Details' }} />
           </Stack.Navigator>
         </NavigationContainer>
     )
