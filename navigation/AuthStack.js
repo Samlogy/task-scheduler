@@ -20,13 +20,11 @@ const options = {
 
 const AuthStack = () => {
     return(
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
-            <Stack.Screen name="Register" component={Register} options={{...options, title: 'Create an account' }} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{...options, title: 'Forgot Password'}} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} options={{headerShown: false}} />
+          <Stack.Screen name="Register" component={Register} options={{...options, title: 'Create an account' }} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{...options, title: 'Forgot Password'}} />
+        </Stack.Navigator>
     )
 }
 

@@ -20,12 +20,10 @@ const options = {
 
 const HomeStack = () => {
     return(
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={options}>
-            <Stack.Screen name="Home" component={Home} options={{...options, title: 'Home' }} />
-            <Stack.Screen name="TaskDetails" component={TaskDetails} options={{...options, title: 'Task Details' }} />
-          </Stack.Navigator>
-        </NavigationContainer>
+      <Stack.Navigator screenOptions={options}>
+        <Stack.Screen name="Home" component={Home} options={{...options, title: 'Home' }} />
+        <Stack.Screen name="TaskDetails" component={TaskDetails} options={{...options, title: 'Task Details' }} />
+      </Stack.Navigator>
     )
 }
 

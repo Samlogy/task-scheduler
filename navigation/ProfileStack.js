@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { View } from "react-native";
 
-import { Profil, EditProfil, ResetPassword } from '../views';
-import { CustomBackButton } from "../components";
+import { Profil, EditProfil, ResetPassword, Notifications } from '../views';
+// import { CustomBackButton } from "../components";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,9 +22,8 @@ const options = {
 };
 
 
-const SettingsStack = ({navigation}) => {
+const ProfileStack = ({navigation}) => {
     return(
-        <NavigationContainer>
           <Stack.Navigator screenOptions={options}>
             <Stack.Screen name="Settings" component={Profil} options={{ title: 'Settings', 
                 headerRight: () => (
@@ -34,11 +33,11 @@ const SettingsStack = ({navigation}) => {
                 ), 
               }} 
             />
+            <Stack.Screen name="Notifications" component={Notifications} options={{...options, title: 'Notifications' }} />
             <Stack.Screen name="ResetPassword" component={ResetPassword} options={{...options, title: 'Reset Password' }} />
             <Stack.Screen name="EditProfil" component={EditProfil} options={{...options, title: 'Edit Profil' }} />
           </Stack.Navigator>
-        </NavigationContainer>
     )
 }
 
-export default SettingsStack;
+export default ProfileStack;
