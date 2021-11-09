@@ -21,15 +21,18 @@ const getFonts = () => Font.loadAsync({
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  if (fontsLoaded) {
-    return (
-      <Navigation />
-    )
-  } else {
-    return (
-      <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
-    )
-  }
+  // if (fontsLoaded) {
+  //   return (
+  //     <Navigation />
+  //   )
+  // } else {
+  //   return (
+  //     <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
+  //   )
+  // }
+  return(
+    <HomeStack />
+  )
 
 }
 

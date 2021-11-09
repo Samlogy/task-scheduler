@@ -5,3 +5,4 @@ export { default as Input} from "./Input.jsx";
 export { default as CustomButton} from "./CustomButton.jsx";
 export { default as CustomSwitch} from "./CustomSwitch.jsx";
 export { default as CustomBackButton} from "./CustomBackButton.jsx";
+export { default as Container} from "./Container.jsx";
