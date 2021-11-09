@@ -4,12 +4,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
 
-import { Input, CustomButton } from '../components';
+import { Input, CustomButton, Container } from '../components';
 import { loginSchema } from "../validation";
 import { globalStyles } from "../styles";
 
 const Login = ({ navigation }) => {
-    const [showPassword, setShowPassword] = useState(true);
+    // const [showPassword, setShowPassword] = useState(true);
 
     const { control, handleSubmit, formState: { errors } } = useForm({
       resolver: yupResolver(loginSchema) 
@@ -22,25 +22,17 @@ const Login = ({ navigation }) => {
     return (
       <View style={globalStyles.container}>
         <Image source={require("../assets/aa.png")} style={style.logo} />
+        {/* <Image source={{ uri: "https://images.unsplash.com/photo-1633655331363-c34828bcfa76?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" }} style={style.logo} /> */}
 
         <Controller control={control} name="email" defaultValue=""
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Email" error={errors.email?.message} />
+            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Enter your Email" error={errors.email?.message} label="Email" />
           )} 
         />
   
         <Controller control={control} name="password" defaultValue=""
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Password" error={errors.password?.message} secureTextEntry 
-            iconPosition="right"
-            icon={
-              <TouchableOpacity onPress={() => setShowPassword((prevState) => !prevState)}>
-                <Text> { showPassword ? 
-                          <Ionicons name="ios-eye-sharp" size={24} color="black" /> : 
-                            <Ionicons name="ios-eye-off-sharp" size={24} color="black" /> } </Text>
-              </TouchableOpacity>
-            }
-            />
+            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Enter your Password" error={errors.password?.message} label="Password" />
           )}
         />
   
