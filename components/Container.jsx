@@ -15,6 +15,6 @@ export default Container;
 
 const styles = StyleSheet.create({
     wrapper: {
-      padding: 20,
+      padding: 20
     },
 });

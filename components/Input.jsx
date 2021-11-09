@@ -1,10 +1,15 @@
 import React from 'react';
-import { Text, TextInput, StyleSheet } from "react-native";
+import { Text, TextInput, StyleSheet, View } from "react-native";
 
 
-const Input = ({ onBlur, value, onChange, placeholder, error, ...rest }) => {
+const Input = ({ onBlur, value, onChange, placeholder, error, label, ...rest }) => {
+
+
     return(
-      <>
+      <View style={{ marginTop: 16 }}>
+      <View>
+        {/* <View> {icon && icon} </View> */}
+        { label && <Text style={styles.label}> {label} </Text> }
         <TextInput
           style={error ? styles.inputError : styles.input}
           onBlur={onBlur}
@@ -13,8 +18,9 @@ const Input = ({ onBlur, value, onChange, placeholder, error, ...rest }) => {
           placeholder={placeholder}
           {...rest}
         />
+        </View>
         <Text style={styles.errorMsg}> {error} </Text>
-      </>
+      </View>
     )
 };
 
@@ -28,7 +34,6 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 4,
-    marginTop: 16
   },
   inputError: {
     borderColor: "red",
@@ -36,10 +41,15 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 4,
-    marginTop: 16
   },
   errorMsg: {
     color: "red",
     marginTop: 4
+  },
+  label: {
+    color: "#333",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 10
   }
 });
