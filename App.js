@@ -4,9 +4,6 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
 import { ResetPassword, Home, Notifications, Settings, About, EditProfil, } from "./views";
-import SettingsStack from "./navigation/SettingsStack";
-import AuthStack from "./navigation/AuthStack";
-import HomeStack from "./navigation/HomeStack";
 import { globalStyles } from './styles';
 import { CustomSwitch, CustomButton } from './components';
 import { COLORS } from "./constants"
@@ -21,17 +18,8 @@ const getFonts = () => Font.loadAsync({
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  // if (fontsLoaded) {
-  //   return (
-  //     <Navigation />
-  //   )
-  // } else {
-  //   return (
-  //     <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
-  //   )
-  // }
   return(
-    <HomeStack />
+    <Navigation />
   )
 
 }
