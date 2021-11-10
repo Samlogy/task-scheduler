@@ -1,9 +1,13 @@
 export const COLORS = {
-    white: '#FFF',
-    dark: '#000',
-    primary: '#F9813A',
-    secondary: '#fedac5',
-    light: '#E5E5E5',
-    grey: '#908e8c',
+    coral: {
+        light: "#ebb8b8",
+        main: "lightcoral",
+        dark: "#f4511e"
+    },
+    white: "#fff",
+    dark: "#333",
+    gray: {
+
+    }
 };
   

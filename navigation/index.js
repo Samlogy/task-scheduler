@@ -41,7 +41,7 @@ const Navigation = () => {
             <Tab.Navigator
             tabBarOptions={{
                 activeTintColor: COLORS.coral.dark,
-                inactiveTintColor: '#333',
+                inactiveTintColor: COLORS.dark,
                 activeBackgroundColor: COLORS.coral.light,
                 inactiveBackgroundColor: 'lightgray',
                 showLabel: true,
@@ -49,36 +49,37 @@ const Navigation = () => {
                 showIcon: true,
               }}
               activeColor='coral'
-              inactiveColor='gray'
+              inactiveColor='lightgray'
               barStyle={{ backgroundColor: '#694fad' }}
               >
             {   isAuthenticated ?
                 <>
                     <Tab.Screen name="Home" component={HomeStack} options={{
                             tabBarIcon: ({ color, size }) => (
-                                <Entypo name="home" size={24} color="#333" />
+                                <Entypo name="home" size={24} color={COLORS.dark} />
                             ),
                             headerShown: false
                         }}
                     />
                     <Tab.Screen name="addTask" component={TaskForm} options={{
-                            ...options, title: 'ADD TASK',
+                            ...options, title: 'Task',
                             tabBarIcon: ({ color, size }) => (
-                                <Ionicons name="add" size={24} color="#333" />
+                                <Ionicons name="add" size={24} color={COLORS.dark} />
                             )
                         }}
                     />
                     <Tab.Screen name="ProfileStack" component={ProfileStack} options={{
+                            title: 'Profile',
                             tabBarIcon: ({ color, size }) => (
-                                <FontAwesome5 name="user-circle" size={24} color="#333" />
+                                <FontAwesome5 name="user-circle" size={24} color={COLORS.dark} />
                             ),
                             headerShown: false
                         }}
                     />
                 </> :
-                <Tab.Screen name="auth" component={AuthStack} options={{
+                <Tab.Screen name="auth" component={AuthStack} options={{ 
                         tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="add" size={24} color="#333" />
+                            <Ionicons name="add" size={24} color={COLORS.dark} />
                         ),
                         headerShown: false
                     }} 
