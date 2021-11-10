@@ -5,7 +5,7 @@ export { default as ForgotPassword} from "./ForgotPassword.jsx";
 export { default as ResetPassword} from "./ResetPassword.jsx";
 
 // add - edit
-// export { default as TaskForm} from "./TaskForm.jsx";
+export { default as TaskForm} from "./TaskForm.jsx";
 
 export { default as Home} from "./Home.jsx";
 export { default as Profil} from "./Profil.jsx";
