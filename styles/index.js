@@ -56,7 +56,7 @@ export const globalStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center"
     },
-        swicthLabel: {
+    swicthLabel: {
         width: 150,
         fontSize: 16,
         fontWeight: "600"

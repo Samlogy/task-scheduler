@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Dimensions, Text, TouchableOpacity, FlatList  } from "react-native";
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity  } from "react-native";
 
 import { COLORS } from "../constants";
 
@@ -20,8 +20,8 @@ const Filter = ({ filters }) => {
             <View style={{
                 backgroundColor:
                   selectedFilter === idx
-                    ? COLORS.primary
-                    : COLORS.secondary,
+                  ? COLORS.coral.light
+                  : COLORS.coral.dark,
                 ...style.listBtn,
               }}>
               <Text style={{
@@ -29,8 +29,8 @@ const Filter = ({ filters }) => {
                   marginHorizontal: 10,
                   color:
                     selectedFilter === idx
-                      ? COLORS.white
-                      : COLORS.primary,
+                      ? COLORS.coral.dark
+                      : COLORS.white,
                 }}>
                 {filter.label}
               </Text>
