@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { View, TouchableOpacity, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,14 +8,29 @@ import { Input, CustomButton, Container } from '../components';
 import { loginSchema } from "../validation";
 import { globalStyles } from "../styles";
 
-const TaskForm = () => {
-    const { control, handleSubmit, formState: { errors } } = useForm({
+const TaskForm = ({ route }) => {
+    const { control, handleSubmit, setValue, formState: { errors } } = useForm({
     //   resolver: yupResolver(loginSchema) 
     });
 
     const onTask = data => {
         console.log(data);
     };
+
+    const onLoad = () => {
+        if (route.name === "EditTask") {
+            const data = route.params;
+            setValue('title', data.title);
+            setValue('description', data.description);
+            setValue('status', data.status);
+            setValue('username', data.username);
+            setValue('priority', data.priority);
+        }
+    };
+
+    useEffect(() => {
+        onLoad();
+    }, []);
     // select --> status / username
   
     return (

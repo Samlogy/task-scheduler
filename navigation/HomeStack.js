@@ -1,7 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Home, TaskDetails } from '../views';
+import { Home, TaskDetails, TaskForm } from '../views';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +22,7 @@ const HomeStack = () => {
       <Stack.Navigator screenOptions={options}>
         <Stack.Screen name="Home" component={Home} options={{...options, title: 'Home' }} />
         <Stack.Screen name="TaskDetails" component={TaskDetails} options={{...options, title: 'Task Details' }} />
+        <Stack.Screen name="EditTask" component={TaskForm} options={{...options, title: 'Edit Task' }} />
       </Stack.Navigator>
     )
 }
