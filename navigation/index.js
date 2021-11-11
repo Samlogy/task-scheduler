@@ -26,7 +26,7 @@ const options = {
 const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
-    const [isAuthenticated, setIsAnthenticated] = useState(true);
+    const [isAuthenticated, setIsAnthenticated] = useState(false);
 
     const onLoad = () => {
         console.log('set authenticated value from storage/api')
@@ -39,50 +39,38 @@ const Navigation = () => {
     return(
         <NavigationContainer>
             <Tab.Navigator
-            tabBarOptions={{
-                activeTintColor: COLORS.coral.dark,
-                inactiveTintColor: COLORS.dark,
-                activeBackgroundColor: COLORS.coral.light,
-                inactiveBackgroundColor: 'lightgray',
-                showLabel: true,
-                labelStyle: { fontSize: 14 },
-                showIcon: true,
-              }}
-              activeColor='coral'
-              inactiveColor='lightgray'
-              barStyle={{ backgroundColor: '#694fad' }}
+            screenOptions={({ route }) => ({
+                tabBarActiveTintColor: 'coral',
+                tabBarInactiveTintColor: 'lightgray',
+              })}
               >
             {   isAuthenticated ?
                 <>
                     <Tab.Screen name="Home" component={HomeStack} options={{
-                            tabBarIcon: ({ color, size }) => (
-                                <Entypo name="home" size={24} color={COLORS.dark} />
+                            tabBarIcon: ({ focused, color, size }) => (
+                                focused ? <Entypo name="home" size={28} color={COLORS.coral.dark} /> : <Entypo name="home" size={24} color={COLORS.dark} />
                             ),
-                            headerShown: false
+                            headerShown: false,
+                            tabBarBadge: 3
                         }}
                     />
                     <Tab.Screen name="addTask" component={TaskForm} options={{
                             ...options, title: 'Task',
-                            tabBarIcon: ({ color, size }) => (
-                                <Ionicons name="add" size={24} color={COLORS.dark} />
+                            tabBarIcon: ({ focused, color, size }) => (
+                                focused ? <Ionicons name="add" size={28} color={COLORS.coral.dark} /> : <Ionicons name="add" size={24} color={COLORS.dark} />
                             )
                         }}
                     />
                     <Tab.Screen name="ProfileStack" component={ProfileStack} options={{
                             title: 'Profile',
-                            tabBarIcon: ({ color, size }) => (
-                                <FontAwesome5 name="user-circle" size={24} color={COLORS.dark} />
+                            tabBarIcon: ({ focused, color, size }) => (
+                                focused ? <FontAwesome5 name="user-circle" size={28} color={COLORS.coral.dark} /> : <FontAwesome5 name="user-circle" size={24} color={COLORS.dark} />
                             ),
                             headerShown: false
                         }}
                     />
                 </> :
-                <Tab.Screen name="auth" component={AuthStack} options={{ 
-                        tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="add" size={24} color={COLORS.dark} />
-                        ),
-                        headerShown: false
-                    }} 
+                <Tab.Screen name="auth" component={AuthStack} options={{ headerShown: false }} 
                 />
             }
             </Tab.Navigator>

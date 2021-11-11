@@ -19,9 +19,9 @@ const ForgotPassword = () => {
   
     return (
       <View style={globalStyles.container}>
-        <Controller control={control} name="email"  defaultValue=""
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input onChange={onChange} value={value} placeholder="Email" error={errors.email?.message} />
+        <Controller control={control} name="email" defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <Input onChange={onChange} value={value} placeholder="Email" error={errors.email?.message} label="Email" />
           )}
         />
         <CustomButton text="Submit" variant="filled" onPress={handleSubmit(onForgot)} />

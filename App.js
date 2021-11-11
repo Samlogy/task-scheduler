@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, TouchableOpacity, ScrollView, Dimensions, Image, TouchableHighlight } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Alert, TouchableOpacity, ScrollView, Dimensions, Pressable, Modal } from "react-native";
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
-import { ResetPassword, Home, Notifications, Settings, About, EditProfil, } from "./views";
+import { ResetPassword, Home, Notifications, Settings, About, EditProfil, TaskForm } from "./views";
 import { globalStyles } from './styles';
 import { CustomSwitch, CustomButton } from './components';
 import { COLORS } from "./constants"
 
-import Navigation from "./navigation"
+import Navigation from "./navigation";
 
 const getFonts = () => Font.loadAsync({
   'nunito-regular': require('./assets/fonts/Nunito-Regular.ttf'),
@@ -16,7 +16,6 @@ const getFonts = () => Font.loadAsync({
 });
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   return(
     <Navigation />
@@ -24,76 +23,50 @@ export default function App() {
 
 }
 
+ 
 
 
-const style = StyleSheet.create({
-  container: {
+
+const styles = StyleSheet.create({
+  centeredView: {
     flex: 1,
-    paddingVertical: 35,
-    paddingHorizontal: 0
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  caption: {
-    fontSize: 14,
-    lineHeight: 14,
-    fontWeight: '500',
-  },
-  userInfoSection: {
-    paddingHorizontal: 30,
-    marginBottom: 25,
-  },
-  row: {
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-  header: {
-    marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-  },
-  inputContainer: {
-    flex: 1,
-    height: 50,
-    borderRadius: 10,
-    flexDirection: 'row',
-    backgroundColor: COLORS.light,
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  sortBtn: {
-    width: 50,
-    height: 50,
-    marginLeft: 10,
-    backgroundColor: COLORS.primary,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  filterListContainer: {
-    paddingVertical: 30,
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  listBtn: {
-    height: 45,
-    width: 120,
     justifyContent: "center",
-    marginRight: 7,
-    borderRadius: 30,
-    alignItems: 'center',
-    paddingHorizontal: 5,
-    flexDirection: 'row',
+    alignItems: "center",
+    marginTop: 22
   },
-  listBtnImgCon: {
-    height: 35,
-    width: 35,
-    backgroundColor: COLORS.white,
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   }
 });

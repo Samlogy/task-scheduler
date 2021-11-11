@@ -21,13 +21,13 @@ const ResetPassword = () => {
       <View style={globalStyles.container}>
         <Controller control={control} name="password"  defaultValue=""
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input onChange={onChange} value={value} placeholder="Current Password" error={errors.password?.message} />
+            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Current Password" error={errors.password?.message} label="Password" />
           )}
         />
 
         <Controller control={control} name="new_password"  defaultValue=""
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input onChange={onChange} value={value} placeholder="New Password" error={errors.new_password?.message} />
+            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="New Password" error={errors.new_password?.message} label="New Password" />
           )}
         />
         <CustomButton text="Submit" variant="filled" onPress={handleSubmit(onReset)} />
