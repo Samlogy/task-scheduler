@@ -1,12 +1,10 @@
 import React from 'react';
-import { Text, View, Switch } from "react-native";
-
-import { globalStyles } from '../styles';
+import { Text, View, Switch, StyleSheet } from "react-native";
 
 const CustomSwitch = ({ text, onChange, value }) => {
   return(
-    <View style={globalStyles.switchContainer}>
-      <Text style={globalStyles.swicthLabel}> {text} </Text>
+    <View style={styles.switchContainer}>
+      <Text style={styles.swicthLabel}> {text} </Text>
       <Switch
         trackColor={{ false: "lightgray", true: "#ebb8b8" }}
         thumbColor={value ? "coral" : "gray"}
@@ -17,5 +15,18 @@ const CustomSwitch = ({ text, onChange, value }) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  switchContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between"
+  },
+  swicthLabel: {
+      width: 150,
+      fontSize: 17,
+      fontWeight: "500",
+      color: "#333"
+  }
+});
 
 export default CustomSwitch;
