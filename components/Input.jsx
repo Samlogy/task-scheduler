@@ -28,8 +28,8 @@ export default Input;
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: 'white',
-    borderColor: 'gray',
+    backgroundColor: '#f5f5f5',
+    borderColor: '#f5f5f5',
     borderWidth: 1,
     height: 50,
     padding: 10,
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
     marginTop: 4
   },
   label: {
-    color: "#333",
+    color: "#a5a5a5",
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "400",
     marginBottom: 10
   }
 });

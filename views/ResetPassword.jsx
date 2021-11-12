@@ -21,7 +21,7 @@ const ResetPassword = () => {
       <View style={globalStyles.container}>
         <Controller control={control} name="password"  defaultValue=""
           render={({ field: { onChange, onBlur, value } }) => (
-            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Current Password" error={errors.password?.message} label="Password" />
+            <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Password" error={errors.password?.message} label="Password" />
           )}
         />
 

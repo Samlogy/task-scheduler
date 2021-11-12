@@ -9,20 +9,23 @@ const imgMargin = (width - 125) / 2;
 
 const TaskDetails = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false);
-    const data = route.params;
+
+  const data = route.params;
     
     return(
         <View style={globalStyles.container}>
-            <Image source={require("../assets/aa.png")} style={styles.img} />
+            { data.image ? <Image source={{ uri: data.image }} style={styles.img} /> : <Image source={require('../assets/aa.png')} style={styles.img} /> }
 
             <Text> {data.title} </Text>
             <Text> {data.description} </Text>
             <Text> {data.priority} </Text>
             <Text> {data.status} </Text>    
             <Text> {data.username} </Text>
+            {/* <Text> {data.deadline} </Text> */}
             <Text> {data.createdAt} </Text>
             <CustomButton text="Edit" variant="filled" onPress={() => navigation.navigate('EditTask', data)} />
             <CustomButton text="Delete" variant="outline" onPress={() => setModalVisible(true)} />
+
             <CustomModal modalVisible={modalVisible} setModalVisible={setModalVisible} text="Do you want to remove this task ?" />
         </View>
     )
@@ -66,11 +69,11 @@ const styles = StyleSheet.create({
     },
     modalView: {
       margin: 20,
-      backgroundColor: "white",
+      backgroundColor: "#fff",
       borderRadius: 20,
       padding: 35,
       alignItems: "center",
-      shadowColor: "#000",
+      shadowColor: "#333",
       shadowOffset: {
         width: 0,
         height: 2
@@ -81,6 +84,7 @@ const styles = StyleSheet.create({
     },
     modalText: {
       marginBottom: 15,
+      fontSize: 16,
       textAlign: "center"
     }
   })
