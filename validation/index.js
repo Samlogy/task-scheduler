@@ -28,8 +28,8 @@ export const resetPasswordSchema = yup.object().shape({
 });
 
 export const editProfileSchema = yup.object().shape({
-    avatar: yup.string().required('Avatar is required'),
-    phone: yup.string().length(10, 'Enter a valid phone number').required('phone number required'),                
+    // avatar: yup.string().required('Avatar is required'),
+    phone: yup.string(),                
     email: yup.string().email("Enter valid Email").required("Email required"),
     fullName: yup.string().required("Full Name required")
 });
