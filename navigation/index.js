@@ -26,7 +26,7 @@ const options = {
 const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
-    const [isAuthenticated, setIsAnthenticated] = useState(false);
+    const [isAuthenticated, setIsAnthenticated] = useState(true);
 
     const onLoad = () => {
         console.log('set authenticated value from storage/api')
