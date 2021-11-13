@@ -52,7 +52,7 @@ const Profil = ({ navigation }) => {
       </View>
   
       <View style={styles.userInfoSection}>
-          <CustomButton text="Edit Profile" variant="filled" onPress={() => navigation.navigate('EditProfil')} />
+          <CustomButton text="Edit Profile" variant="filled" onPress={() => navigation.navigate('EditProfil', data)} />
           <CustomButton text="Reset Password" variant="filled" onPress={() => navigation.navigate('ResetPassword')} />
           <CustomButton text="Logout" variant="outline" onPress={() => onLogout()} />
       </View>

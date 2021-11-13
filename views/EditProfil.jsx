@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Image, Text, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as ImagePicker from 'expo-image-picker';
@@ -9,7 +9,7 @@ import { Input, CustomButton } from '../components';
 import { editProfileSchema } from "../validation";
 import { globalStyles } from "../styles";
 
-const EditProfil = () => {
+const EditProfil = ({ route }) => {
   const [image, setImage] = useState(null);
   const [cameraPermission, setCameraPermission] = useState(null);
   const [galleryPermission, setGalleryPermission] = useState(null);
@@ -24,46 +24,60 @@ const EditProfil = () => {
   });
 
   // get pemissions
-  const permisionFunction = async () => {
-    // here is how you can get the camera permission
-    const cameraPermission = await Camera.requestPermissionsAsync();
+  const permissionLibrary = async () => {
+    const imagePermission = await ImagePicker.getMediaLibraryPermissionsAsync();
+    // console.log(imagePermission.status);
 
-    setCameraPermission(cameraPermission.status === 'granted');
-
+    setGalleryPermission(imagePermission.status === 'granted');
+    if ( imagePermission.status !== 'granted' ) {
+      alert('Permission for media access needed.');
+    }
+    return imagePermission.status === 'granted'
+  };
+  const permissionCamera = async () => {
     const imagePermission = await ImagePicker.getMediaLibraryPermissionsAsync();
     console.log(imagePermission.status);
 
     setGalleryPermission(imagePermission.status === 'granted');
 
-    if (
-      imagePermission.status !== 'granted' &&
-      cameraPermission.status !== 'granted'
-    ) {
-      alert('Permission for media access needed.');
+    if (imagePermission.status !== 'granted') {
+      Alert.alert('Ask for permission Camera', '', [
+        { text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
     }
+    return imagePermission.status === 'granted'
   };
 
   const choosePhotoFromLibrary = async () => {
     // ask for permission if true continue else return
+    const permission = permissionLibrary();
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-      setShowPopup(false);
+    if (permission) {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+  
+      console.log(result);
+  
+      if (!result.cancelled) {
+        setImage(result.uri);
+        setShowPopup(false);
+      }
     }
   };
   const takePhotoFromCamera = async () => {
     setShowCamera(true)
     setShowPopup(false);
     // ask for permission if true continue else return
+    const permission = permissionCamera();
+
     // show full screen camera + button (take picture )
     // once picture taken --> hide full screen camera + new setImage
     // if (camera) {
@@ -78,11 +92,18 @@ const EditProfil = () => {
       console.log(data);
   };
   const onLoad = () => {
-    console.log("load data from api");
+    const data = route.params;
+    
+    if (data) {
+      setValue('fullName', data.fullName)
+      setValue('email', data.email)
+      setValue('phone', data?.phone)
+      setValue('address', data?.address)
+      setValue('username', data?.username)
+    }
   };
 
   useEffect(() => {
-    // permisionFunction();
     onLoad();
   }, []);
 
@@ -109,7 +130,7 @@ const EditProfil = () => {
 
 
   return (
-    <View style={globalStyles.container}>
+    <ScrollView style={style.container} howsVerticalScrollIndicator={false}>
       <TouchableOpacity onPress={() => setShowPopup(true)}>
         { image ? <Image source={{ uri: image }} style={style.avatar} /> : <Image source={require('../assets/aa.png')} style={style.avatar} /> }
       </TouchableOpacity>
@@ -120,33 +141,52 @@ const EditProfil = () => {
           <Camera ref={(ref) => setCamera(ref)} style={style.fixedRatio} type={type} ratio={'1:1'} />
         </View>
       }
-      { showPopup && <BottomModal takePhotoFromCamera={takePhotoFromCamera} choosePhotoFromLibrary={choosePhotoFromLibrary} setShowPopup={setShowPopup} /> }
-      
+
+    { showPopup && 
+      <BottomModal takePhotoFromCamera={takePhotoFromCamera} choosePhotoFromLibrary={choosePhotoFromLibrary} setShowPopup={setShowPopup} /> }
       
       <Controller control={control} name="fullName" defaultValue=""
         render={({ field: { onChange, onBlur, value } }) => (
-          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Full Name" error={errors.fullName?.message} />
+          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Full Name" error={errors.fullName?.message} label="Full Name" />
+        )}
+      />
+
+      <Controller control={control} name="username" defaultValue=""
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Usernale" error={errors.username?.message} label="Username" />
         )}
       />
 
       <Controller control={control} name="email" defaultValue=""
         render={({ field: { onChange, onBlur, value } }) => (
-          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Email" error={errors.email?.message} />
+          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Email" error={errors.email?.message} label="Email" />
+        )}
+      />
+
+      <Controller control={control} name="address" defaultValue=""
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Address" error={errors.address?.message} label="Address" />
         )}
       />
 
       <Controller control={control} name="phone" defaultValue=""
         render={({ field: { onChange, onBlur, value } }) => (
-          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Phone" error={errors.phone?.message} />
+          <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Phone" error={errors.phone?.message} label="Phone" />
         )}
       />
 
       <CustomButton text="Edit" variant="filled" onPress={handleSubmit(onEdit)} />
-    </View>
+    </ScrollView>
   );
 };
 
 const style = StyleSheet.create({
+  container: { 
+    paddingHorizontal: 25, 
+    // marginBottom: 25,
+    // paddingTop: 25,
+    backgroundColor: "#fff" 
+  },
   avatar: {
     height: 125, 
     width: 125, 
