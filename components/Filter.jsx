@@ -12,8 +12,7 @@ const Filter = ({ filters }) => {
     };
     
     return (
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}
-        contentContainerStyle={style.filterListContainer}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={style.filterListContainer}>
         {filters.map((filter, idx) => (
           <TouchableOpacity key={idx} activeOpacity={0.8}
             onPress={() => onFilter(idx, filter.value)}>
@@ -43,19 +42,13 @@ const Filter = ({ filters }) => {
 
 
 const style = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingVertical: 35,
-      paddingHorizontal: 0
-    },
     filterListContainer: {
-      paddingVertical: 30,
       alignItems: 'center',
-      paddingHorizontal: 20,
+      paddingHorizontal: 25,
     },
     listBtn: {
       height: 45,
-      width: 120,
+      // width: 120,
       justifyContent: "center",
       marginRight: 7,
       borderRadius: 30,

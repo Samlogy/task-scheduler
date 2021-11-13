@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, TouchableOpacity, Text, Image, StyleSheet, ScrollView } from "react-native";
+import {  StyleSheet, ScrollView } from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Ionicons } from '@expo/vector-icons';
@@ -9,9 +9,7 @@ import { loginSchema } from "../validation";
 import { globalStyles } from "../styles";
 
 const TaskForm = ({ route }) => {
-    const { control, handleSubmit, setValue, formState: { errors } } = useForm({
-    //   resolver: yupResolver(loginSchema) 
-    });
+    const { control, handleSubmit, setValue, formState: { errors } } = useForm();
 
     const onTask = data => {
         console.log(data);
@@ -34,8 +32,7 @@ const TaskForm = ({ route }) => {
     // select --> status / username
   
     return (
-
-        <View style={globalStyles.container} showsVerticalScrollIndicator={false}>
+        <ScrollView style={style.container} showsVerticalScrollIndicator={false}>
             <Controller control={control} name="title" defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
                     <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Enter a Title" error={errors.title?.message} label="Title" />
@@ -69,9 +66,17 @@ const TaskForm = ({ route }) => {
             />
     
             <CustomButton text="Submit" variant="filled" onPress={handleSubmit(onTask)} />
-        </View>
+        </ScrollView>
     );
   };
 
+const style = StyleSheet.create({
+    container: { 
+        paddingHorizontal: 25, 
+        // marginBottom: 25,
+        // paddingTop: 25,
+        backgroundColor: "#fff" 
+    },
+});
 
 export default TaskForm;
