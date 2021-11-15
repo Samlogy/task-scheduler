@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-
+import { View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Entypo, Ionicons, FontAwesome5  } from '@expo/vector-icons';
+import { Entypo, Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+
 import { COLORS } from "../constants";
 
 // stacks
@@ -58,6 +59,11 @@ const Navigation = () => {
                             ...options, title: 'Task',
                             tabBarIcon: ({ focused, color, size }) => (
                                 focused ? <Ionicons name="add" size={28} color={COLORS.coral.dark} /> : <Ionicons name="add" size={24} color={COLORS.dark} />
+                            ),
+                            headerRight: () => (
+                            <View style={{marginRight: 20}}>
+                                <FontAwesome name="question" size={24} color="#fff" onPress={() => navigation.navigate('About')}/>
+                            </View>
                             )
                         }}
                     />

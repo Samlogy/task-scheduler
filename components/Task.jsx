@@ -19,20 +19,17 @@ const styles = StyleSheet.create({
     taskContainer: {
         padding: 10,
         marginTop: 16,
-        borderColor: '#bbb',
-        borderWidth: 2,
-        borderStyle: "solid",
-        borderRadius: 1,
-        borderRadius: 10,
+        borderRadius: 8,
         flexDirection: "row",
         flexWrap: "wrap", 
         justifyContent: "space-around",
-        // elevation: 1
+        elevation: .25
     },
     taskItem: {
         fontWeight: "500",
         fontSize: 16,
-        padding: 4
+        padding: 4,
+        textAlign: "left"
     }
 });
 
