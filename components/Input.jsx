@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, StyleSheet, View } from "react-native";
 
 
-const Input = ({ onBlur, value, onChange, placeholder, error, label, ...rest }) => {
+const Input = ({ onBlur, value, onChange, placeholder, error, label, style, ...rest }) => {
 
 
     return(
@@ -11,7 +11,7 @@ const Input = ({ onBlur, value, onChange, placeholder, error, label, ...rest }) 
         {/* <View> {icon && icon} </View> */}
         { label && <Text style={styles.label}> {label} </Text> }
         <TextInput
-          style={error ? styles.inputError : styles.input}
+          style={error ? [styles.inputError, style] : [styles.input, style]}
           onBlur={onBlur}
           onChangeText={onChange}
           value={value}
