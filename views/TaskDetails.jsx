@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { SafeAreaView, StyleSheet, Text, View, Image, Dimensions, Modal } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, Image, Dimensions, Modal, ScrollView } from "react-native";
 
 import { CustomButton } from '../components';
 import { globalStyles } from "../styles";
@@ -13,21 +13,22 @@ const TaskDetails = ({ navigation, route }) => {
   const data = route.params;
     
     return(
-        <View style={globalStyles.container}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
             { data.image ? <Image source={{ uri: data.image }} style={styles.img} /> : <Image source={require('../assets/aa.png')} style={styles.img} /> }
 
-            <Text> {data.title} </Text>
-            <Text> {data.description} </Text>
-            <Text> {data.priority} </Text>
-            <Text> {data.status} </Text>    
-            <Text> {data.username} </Text>
+            <Text style={{ ...styles.text, fontWeight: "bold", fontSize: 18 }}> {data.title} </Text>
+            <Text style={styles.text}> {data.description} </Text>
+            <Text style={styles.text}> {data.priority} </Text>
+            <Text style={styles.text}> {data.status} </Text>    
+            <Text style={styles.text}> {data.username} </Text>
             {/* <Text> {data.deadline} </Text> */}
-            <Text> {data.createdAt} </Text>
+            <Text style={styles.text}> {data.createdAt} </Text>
+
             <CustomButton text="Edit" variant="filled" onPress={() => navigation.navigate('EditTask', data)} />
             <CustomButton text="Delete" variant="outline" onPress={() => setModalVisible(true)} />
 
             <CustomModal modalVisible={modalVisible} setModalVisible={setModalVisible} text="Do you want to remove this task ?" />
-        </View>
+        </ScrollView>
     )
 }
 
@@ -54,12 +55,21 @@ const CustomModal = ({ modalVisible, setModalVisible, text }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      paddingHorizontal: 25,
+      backgroundColor: "#fff"
+    },
     img: {
       height: 125, 
       width: 125, 
       borderRadius: 25,
       marginBottom: 26,
       marginHorizontal: imgMargin
+    },
+    text: {
+      marginBottom: 16,
+      fontSize: 16,
+      color: "#333"
     },
     centeredView: {
       flex: 1,
