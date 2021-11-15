@@ -41,8 +41,7 @@ const TaskForm = ({ route }) => {
     
             <Controller control={control} name="description" defaultValue=""
                 render={({ field: { onChange, onBlur, value } }) => (
-                    <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Enter a Description" error={errors.description?.message} label="Description" 
-                        multiline numberOfLines={4} />
+                    <Input onChange={onChange} onBlur={onBlur} value={value} placeholder="Enter a Description" error={errors.description?.message} label="Description" style={{height: 120, alignItems: "flex-start"}} multiline numberOfLines={4} />
                 )}
             />
 

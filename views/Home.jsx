@@ -11,11 +11,16 @@ const filters = [
   {label: "Web", value: "web"},
   {label: "Front", value: "front"},
   {label: "Back", value: "back"},
+  {label: "Data", value: "data"},
+  {label: "Science", value: "science"},
+  {label: "Web", value: "web"},
+  {label: "Front", value: "front"},
+  {label: "Back", value: "back"},
 ]; 
 
 const data = [
   {
-    title: "title",
+    title: "delectus aut autem delectus aut autem delectus aut autem delectus aut autem",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
     status: "Pendding",
@@ -23,7 +28,7 @@ const data = [
     createdAt: "20-10-2021"
   },
   {
-    title: "title",
+    title: "delectus aut autem delectus aut autem delectus aut autem delectus aut autem",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
     status: "Doing",
@@ -31,7 +36,7 @@ const data = [
     createdAt: "20-10-2021"
   },
   {
-    title: "title",
+    title: "delectus aut autem delectus aut autem delectus aut autem delectus aut autem",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
     status: "Done",
@@ -39,7 +44,7 @@ const data = [
     createdAt: "20-10-2021"
   },
   {
-    title: "title",
+    title: "delectus aut autem delectus aut autem delectus aut autem delectus aut autem",
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora laborum ad nostrum nesciunt ipsum dolorem consequunt !",
     priority: 1,
     status: "Canceled",
@@ -75,7 +80,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     paddingVertical: 25,
-    // flex: 1
   },
   tasks: {
     marginVertical: 20,
